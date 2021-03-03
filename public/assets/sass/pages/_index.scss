@@ -21,6 +21,9 @@
     align-items: center;
     padding: 30px;
 }
+.recette a:hover {
+    text-transform: none;
+}
 .recette li:nth-child(even) > * {
     display: flex;
     flex-direction: row-reverse;
