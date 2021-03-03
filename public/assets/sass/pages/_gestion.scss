@@ -1,0 +1,154 @@
+.gestion {
+    .button {
+        display: flex;
+        justify-content: center;
+        margin: 5px 0 5px auto;
+        width: 100px;
+        padding: 10px 10px;
+    }
+    .gestionContainer {
+        width: 90%;
+        margin: 0 auto;
+        max-width: 800px;
+    }
+    #gestionRecette h2 span, #gestionCuisinier h2 span, #gestionAdmin h2 span {
+        font-style: italic;
+        font-size: 20px;
+    }
+    #gestionRecette, #gestionCuisinier, #gestionAdmin {
+        flex: 1 0 auto;
+    }
+}
+
+.crud {
+    border-collapse: collapse;
+    margin: 10px auto;
+    font-size: 0.9em;
+    min-width: 300px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.15);
+    width: 100%;
+    max-width: 800px;
+    
+    thead tr,th {
+        background-color: #009879;
+        color: white;
+        text-align: left;
+        font-weight: bold;
+    }
+    th,td {
+        padding: 12px 15px;
+        vertical-align: middle;
+    }
+    tbody tr {
+        border-bottom: 1px solid #ddd;
+    }
+    tbody tr:nth-child(odd) {
+        background-color: #f3f3f3;
+    }
+    tbody tr:last-of-type {
+        border-bottom: 1px solid #009879;
+    }
+    .visible {
+        color: white;
+        background-color: $bgSubmitHover;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+    .nonVisible {
+        color: white; 
+        background-color: $buttonDelete;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+    img {
+        width: 20px;
+        margin: 0 5px;
+    }
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+    svg:hover {
+        fill: $buttonDelete;
+    }
+}
+#gestionCuisinier, #gestionAdmin {
+    .gestionContainer {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .gestion {
+        .gestionContainer {
+            max-width: 400px;
+            width: 95%;
+        }
+    }
+
+    #gestionRecette .crud, #gestionAdmin .crud{
+        max-width: 400px;
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr { 
+            display: block; 
+        }
+        
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr { 
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+        tr { 
+            border: 1px solid #ccc;
+        }
+        td { 
+            border: none;
+            border-bottom: 1px solid #eee; 
+            position: relative;
+            padding-right: 20px;
+            text-align: right;
+        }
+        td:nth-of-type(1) { 
+            background-color: #009879;
+            color: white;
+            font-weight: bold;
+        }
+        td:before { 
+            position: absolute;
+            left: 20px;
+            white-space: nowrap;
+            margin-right: auto;
+            font-weight: bold;
+        }
+    }
+    #gestionRecette .crud {
+        td:nth-of-type(1):before { content: "Titre"; color: white;}
+        td:nth-of-type(2):before { content: "Cuisinier"; }
+        td:nth-of-type(3):before { content: "Date"; }
+        td:nth-of-type(4):before { content: "Statut"; }
+        td:nth-of-type(5):before { content: "Action"; }
+    }
+    #gestionAdmin .crud {
+        td:nth-of-type(1):before { content: "Mail"; color: white;}
+        td:nth-of-type(2):before { content: "Mot de passe"; }
+        td:nth-of-type(3):before { content: "Statut"; }
+        td:nth-of-type(4):before { content: "Action"; }
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+    #gestionCuisinier h2, #gestionRecette h2, #gestionAdmin h2 {
+        font-size: 30px;
+    }
+    #gestionCuisinier .gestionContainer, #gestionAdmin .gestionContainer {
+        width: 100%;
+    }
+    #gestionCuisinier .crud img {
+        margin: 0 2px;
+    }
+}

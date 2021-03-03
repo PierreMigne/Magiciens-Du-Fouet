@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mes adresses - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+<article id="loginBackground">
+    <div class="formContainer">
+        <a href="{{ path('account_address_add') }}" class="button float-right mr-3">Ajouter</a>
+        <h2>Mes adresses</h2>
+
+        <a href="{{ path('account') }}" class="return">Retourner sur mon compte</a>
+        {% if app.user.addresses|length == 0 %}
+            <p class="text-center my-5">
+                Vous n'avez pas encore ajouté d'adresse dans votre compte client. Pour en ajouter une, veuillez <a href="{{ path('account_address_add') }}"><u>cliquer ici</u></a>.
+            </p>
+        {% else %}
+            <div class="">
+                {% for address in app.user.addresses %}
+                    <div class="card m-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ address.name }}</h5>
+                            <p class="card-text">
+                                {{ address.address }}, <br>
+                                {{ address.postal }} - {{ address.city }} - {{ address.country }}
+                            </p>
+                            <a href="{{ path('account_address_edit', { 'id' : address.id }) }}" ><u>Modifier</u></a>
+                            <a href="{{ path('account_address_delete', { 'id' : address.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette adresse ?')"><u>Supprimer</u></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    </div>
+</article>
+{% endblock %}

@@ -1,0 +1,61 @@
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  
+  .page-item {
+    background-color: $bgInput;
+    transition: background-color 0.2s ease-in-out;
+    padding: 0px;
+    &:hover {
+      background-color: rgba($bgSubmitHover, 0.2);
+    }
+  }
+  .page-item a {
+    display: block;
+    padding: 20px;
+  }
+  .page-select {
+    background-color: $bgInput;
+  }
+
+  .disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: rgba($bgInput, 0.4);
+  }
+  .active {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: $bgSubmit;
+    &:hover {
+      background-color: $bgSubmit;
+    }
+  }
+
+}
+
+
+
+@media screen and (max-width: 450px) {
+
+  .pagination {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    .page-item {
+      width: 100%;
+      margin: 1px 0;
+    }
+    li {
+      padding: 10px;
+    }
+  }
+
+}

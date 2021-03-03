@@ -1,0 +1,10 @@
+footer {
+    background-color: $header;
+    // background-color: transparent;
+    height: 70px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}

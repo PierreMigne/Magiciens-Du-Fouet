@@ -1,0 +1,81 @@
+#loginBackground {
+    background-image: radial-gradient(circle at 77% 43%, rgba(168, 168, 168,0.04) 0%, rgba(168, 168, 168,0.04) 50%,rgba(10, 10, 10,0.04) 50%, rgba(10, 10, 10,0.04) 100%),radial-gradient(circle at 33% 65%, rgba(248, 248, 248,0.04) 0%, rgba(248, 248, 248,0.04) 50%,rgba(228, 228, 228,0.04) 50%, rgba(228, 228, 228,0.04) 100%),radial-gradient(circle at 92% 79%, rgba(152, 152, 152,0.04) 0%, rgba(152, 152, 152,0.04) 50%,rgba(28, 28, 28,0.04) 50%, rgba(28, 28, 28,0.04) 100%),radial-gradient(circle at 91% 13%, rgba(41, 41, 41,0.04) 0%, rgba(41, 41, 41,0.04) 50%,rgba(214, 214, 214,0.04) 50%, rgba(214, 214, 214,0.04) 100%),linear-gradient(90deg, rgb(11, 127, 96),rgb(139, 205, 191));
+    height: 100%;
+    padding: 30px 0;
+}
+#loginBackground .formContainer {
+    width: 80%;
+    margin: auto;
+    background: white;
+    border-radius: 5px;
+    h2 {
+        padding: 20px;
+    }
+    .connect {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 25px;
+    }
+    .buttonDelete {
+        background-color: $bgInput;
+        margin: 5px 0 0 auto;
+        font-size: 16px;
+        padding: 10px 20px;
+        width: 100px;
+        &:hover {
+            background-color:$buttonDelete;
+        }
+    }
+    .btnCont {
+        display: flex;
+    }
+    .button {
+        display: flex;
+        justify-content: center;
+        width: 100px;
+    }
+    .buttonDeco {
+        background-color: $bgInput;
+        &:hover {
+            background-color:$buttonDelete;
+        }
+    }
+}
+#virtualPassword {
+    background-color: $bgInput;
+    margin: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 15px;
+    padding: 15px;
+    border-radius: 5px;
+}
+.col {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+    &:hover {
+        background-color:$bgSubmit;
+        color: white;
+    }
+}
+#deco {
+margin-top: 100px;
+}
+@media screen and (max-width: 450px) {
+    #loginBackground .formContainer .btnCont {
+        flex-direction: column;
+    }
+    #loginBackground .formContainer {
+        width: 90%;
+        margin: auto;
+    }
+}

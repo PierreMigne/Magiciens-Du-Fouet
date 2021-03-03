@@ -1,0 +1,34 @@
+#deleteRecette {
+    h2 span {
+        font-size: 30px;
+    }
+    p {
+        margin: 10px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 450px){
+    #deleteRecette {
+        h2 {
+            font-size: 30px;
+        }
+        h2 span {
+            font-size: 25px;
+        }
+        input {
+            max-width: 120px;
+        }
+    }
+}
+
+@media screen and (max-width: 350px){
+    #deleteRecette {
+        h2 {
+            font-size: 25px;
+        }
+        h2 span {
+            font-size: 20px;
+        }
+    }
+}

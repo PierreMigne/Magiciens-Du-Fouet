@@ -1,0 +1,45 @@
+header {
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+h1 {
+    font-family: Courgette, serif;
+    font-size: 50px;
+    color: $header;
+    font-weight: bolder;
+    text-align: center;
+    padding: 10px;
+}
+header nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 10px 0;
+    li {
+        padding: 10px ;
+        transition: background-color 0.2s ease-in-out;
+        border-radius: 2px;
+    }
+
+}
+header ul li:hover {
+    background-color: $bgSubmit;
+}
+
+@media screen and (max-width: 450px) {
+    header nav ul {
+        margin: 0;
+    }
+    header nav ul li {
+        font-size: 14px;
+    }
+    header h1 {
+        font-size: 45px;
+    }
+}
+@media screen and (max-width: 350px) {
+    header nav ul li {
+        padding: 3px;
+    }
+
+}
