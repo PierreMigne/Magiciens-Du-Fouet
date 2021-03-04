@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ cook.firstname }} {{ cook.lastname }} - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+    <article class="afficherBody">
+        <section>
+            <div class="afficher">
+                <h2>{{ cook.firstname }} {{ cook.lastname }}</h2>
+                <img src="{{ asset('uploads/cooks/') }}{{ cook.illustration }}" alt="Recette">
+            </div>
+        </section>
+    </article>
+{% endblock %}

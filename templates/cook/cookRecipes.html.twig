@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos cuisiniers - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+    <section class="afficherBody">
+        <article class="recette">
+            <h1>Nos recettes</h1>
+            <ul>
+                {% for recipe in cook.getRecipes %}
+                    <li>
+                        <a href="{{ path('recipe', {slug: recipe.slug})  }}">
+                            <img src="{{ asset('uploads/recipes/') }}{{ recipe.illustration }}" alt="recette" class="imgRecette">
+                            <div class="container">
+                                <h3>{{ recipe.title }} - par {{ recipe.CookId }} </h3>
+                                <p>{{ recipe.description }}</p>
+                                <div class="imgContainer">
+                                    {% for i in 1..recipe.difficulty %}
+                                        <span><img src="{{ asset('assets/img/fouet.png') }}" alt="icône fouet"></span>
+                                    {% endfor %}
+                                    {% for i in 1..recipe.cost %}
+                                        <span><img src="{{ asset('assets/img/euro.png') }}" alt="icône fouet"></span>
+                                    {% endfor %}
+                                </div>
+                                <p>{{ recipe.duration|date("h") }}h{{ recipe.duration|date("i") }}</p>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </article>
+    </section>
+{% endblock %}

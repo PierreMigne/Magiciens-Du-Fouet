@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ recipe.title}} - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+<article class="afficherBody">
+    <main>
+        <div class="afficher">
+            <h2>{{ recipe.title}}</h2>
+            <img src="{{ asset('uploads/recipes/') }}{{ recipe.illustration }}" alt="Recette">
+            <div class="afficherContainer">
+                <div class="afficherTop">
+                    <span>
+                        <img src="{{ asset('assets/img/clock.svg') }}" alt="icône horloge">
+                        <p>{{ recipe.duration|date("h") }}h{{ recipe.duration|date("i") }}</p>
+                    </span>
+                    <span>
+                        <div>
+                            {% for i in 1..recipe.difficulty %}
+                                <img src="{{ asset('assets/img/fouet.png') }}" alt="icône fouet">
+                            {% endfor %}
+                        </div>
+                        <p>Difficulté</p>
+                    </span>
+                    <span>
+                        <div>
+                            {% for i in 1..recipe.cost %}
+                                <img src="{{ asset('assets/img/euro.png') }}" alt="icône fouet">
+                            {% endfor %}
+                        </div>
+                        <p>Coût</p>
+                    </span>
+                    <span>
+                        <img src="{{ asset('assets/img/calendar.svg') }}" alt="icône calendrier">
+                        <p>{{ recipe.createdAt|date('d/m/Y') }}</p>
+                    </span>
+                    <span >
+                        <img src="{{ asset('assets/img/heart.svg') }}" alt="icône likes">
+                        <p>{{ recipe.likes }}</p>
+                    </span>
+                </div>
+                <p class="description">{{ recipe.description }}</p>
+                <hr>
+                {% set ingredients = recipe.ingredients|split('/') %}
+                <ul>Ingredients : {{ recipe.people }} Pers.<br>
+                    {% for ingredient in ingredients %}
+                        <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+                <hr>
+                {% set steps = recipe.steps|split('/') %}
+                <ol>Étapes :
+                    {% for step in steps %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+                <hr>
+            </div>
+        </div>
+    </main>
+    <aside>
+        <nav role="navigation">
+            <div id="menuToggle">
+                <input name="toggle" type="checkbox" />
+                <label for="toggle">
+                    <img src="{{ asset('assets/img/chef-in-uniform.svg') }}">
+                </label>
+
+                <!-- the menu that will slide in from the left -->
+
+                <ul id="menu">
+                    <li><p>Les cuisiniers :</p></li>
+                    <hr>
+                    {% for cook in cooks %}
+                    <li>
+                        <a href="voir-cuisinier_<?= $cuisinier->getIdCuisinier() ?>.html">
+                            <p>{{ cook.firstname }} {{ cook.lastname }}</p>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <hr>
+                    <li>
+                        <a href="cuisiniers.html">Voir plus</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+</article>
+
+
+{% endblock %}

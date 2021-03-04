@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nes recettes - Les Magiciens du Fouet{% endblock %}
+{% block title %}Nos recettes - Les Magiciens du Fouet{% endblock %}
 
 {% block content %}
     <section class="afficherBody">
@@ -9,7 +9,7 @@
                 <ul>
                     {% for recipe in recipes %}
                         <li>
-                            <a href="#">
+                            <a href="{{ path('recipe', {slug: recipe.slug})  }}">
                                 <img src="{{ asset('uploads/recipes/') }}{{ recipe.illustration }}" alt="recette" class="imgRecette">
                                 <div class="container">
                                     <h3>{{ recipe.title }} - par {{ recipe.CookId }} </h3>
@@ -22,7 +22,7 @@
                                             <span><img src="{{ asset('assets/img/euro.png') }}" alt="icône fouet"></span>
                                         {% endfor %}
                                     </div>
-                                    <p>Temps de préparation : {{ recipe.duration|date("h'i") }}</p>
+                                    <p>{{ recipe.duration|date("h") }}h{{ recipe.duration|date("i") }}</p>
                                 </div>
                             </a>
                         </li>
