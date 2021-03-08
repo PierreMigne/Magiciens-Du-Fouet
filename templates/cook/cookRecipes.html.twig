@@ -6,8 +6,9 @@
     <section class="afficherBody">
         <article class="recette">
             <h1>Nos recettes</h1>
+
             <ul>
-                {% for recipe in cook.getRecipes %}
+                {% for recipe in cook.getRecipes|filter(recipe => recipe.isVisible == 'true' )  %}
                     <li>
                         <a href="{{ path('recipe', {slug: recipe.slug})  }}">
                             <img src="{{ asset('uploads/recipes/') }}{{ recipe.illustration }}" alt="recette" class="imgRecette">
@@ -22,7 +23,7 @@
                                         <span><img src="{{ asset('assets/img/euro.png') }}" alt="icône fouet"></span>
                                     {% endfor %}
                                 </div>
-                                <p>{{ recipe.duration|date("h") }}h{{ recipe.duration|date("i") }}</p>
+                                <p>{{ recipe.duration|date("H:i:s") }}</p>
                             </div>
                         </a>
                     </li>

@@ -12,7 +12,7 @@
                 <div class="afficherTop">
                     <span>
                         <img src="{{ asset('assets/img/clock.svg') }}" alt="icône horloge">
-                        <p>{{ recipe.duration|date("h") }}h{{ recipe.duration|date("i") }}</p>
+                       <p>{{ recipe.duration|date("H:i:s") }}</p>
                     </span>
                     <span>
                         <div>
@@ -34,10 +34,22 @@
                         <img src="{{ asset('assets/img/calendar.svg') }}" alt="icône calendrier">
                         <p>{{ recipe.createdAt|date('d/m/Y') }}</p>
                     </span>
-                    <span >
-                        <img src="{{ asset('assets/img/heart.svg') }}" alt="icône likes">
+
+                    <span class="tooltipCont">
+                            {% if (app.request.cookies.has('isLiked_'~recipe.id)) %}
+                                <span class="tooltiptext">Je n'aime plus</span>
+                                <a href="{{ path('recipe_dislike', {slug: recipe.slug})  }}">
+                                    <img src="{{ asset('assets/img/heart.svg') }}" class="likes" alt="icône likes">
+                                </a>
+                            {% else %}
+                                <span class="tooltiptext">J'aime</span>
+                                <a href="{{ path('recipe_like', {slug: recipe.slug})  }}">
+                                    <img src="{{ asset('assets/img/heartBlack.svg') }}" class="likes" alt="icône likes">
+                                </a>
+                            {% endif %}
                         <p>{{ recipe.likes }}</p>
                     </span>
+
                 </div>
                 <p class="description">{{ recipe.description }}</p>
                 <hr>
@@ -73,14 +85,14 @@
                     <hr>
                     {% for cook in cooks %}
                     <li>
-                        <a href="voir-cuisinier_<?= $cuisinier->getIdCuisinier() ?>.html">
+                        <a href="{{ path('cookRecipes', {slug: cook.slug})  }}">
                             <p>{{ cook.firstname }} {{ cook.lastname }}</p>
                         </a>
                     </li>
                     {% endfor %}
                     <hr>
                     <li>
-                        <a href="cuisiniers.html">Voir plus</a>
+                        <a href="{{ path('cooks') }}">Voir plus</a>
                     </li>
                 </ul>
             </div>

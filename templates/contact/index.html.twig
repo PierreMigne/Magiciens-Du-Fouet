@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+<article id="loginBackground">
+    <div class="formContainer">
+        <h2>Nous contacter</h2>
+        <p class="ml-4">N'hésitez pas à prendre contact avec notre équipe, nous vous répondrons dans les meilleurs délais.</p>
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+        <div>
+            {{ form(form) }}
+        </div>
+    </div>
+</article>
+{% endblock %}
+

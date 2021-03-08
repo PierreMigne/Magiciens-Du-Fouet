@@ -26,6 +26,12 @@
         background-color:$buttonDelete;
     }
 }
+.voirRecettes {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .likes {
     border: none;

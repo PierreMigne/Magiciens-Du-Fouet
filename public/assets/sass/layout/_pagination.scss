@@ -1,3 +1,4 @@
+
 .paginationContainer {
   display: flex;
   justify-content: center;
@@ -7,34 +8,37 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  
-  .page-item {
-    background-color: $bgInput;
+
+  ul {
+    display: flex;
+    flex-direction: row!important;
+  }
+
+  ul li {
+
+    background-color: rgba($pagination, 0.4)!important;
     transition: background-color 0.2s ease-in-out;
     padding: 0px;
     &:hover {
-      background-color: rgba($bgSubmitHover, 0.2);
+      background-color: rgba($bgSubmitHover, 0.2)!important;
     }
   }
-  .page-item a {
+  li{
     display: block;
-    padding: 20px;
-  }
-  .page-select {
-    background-color: $bgInput;
+    padding: 20px!important;
   }
 
   .disabled {
     cursor: not-allowed;
     pointer-events: none;
-    background-color: rgba($bgInput, 0.4);
+    background-color: $pagination!important;
   }
   .active {
     font-size: 20px;
     font-weight: bold;
-    background-color: $bgSubmit;
+    background-color: $bgSubmit!important;
     &:hover {
-      background-color: $bgSubmit;
+      background-color: $bgSubmit!important;
     }
   }
 
@@ -42,20 +46,22 @@
 
 
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 620px) {
 
   .pagination {
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    .page-item {
-      width: 100%;
-      margin: 1px 0;
+    ul {
+      flex-direction: column!important;
     }
     li {
       padding: 10px;
+      width: 100%;
+      margin: 1px 0;
     }
   }
 
 }
+

@@ -42,7 +42,7 @@ class CookController extends AbstractController
     #[Route('/cuisiniers/{slug}/recettes', name: 'cookRecipes')]
     public function recipes($slug): Response
     {
-        $cook = $this->entityManager->getRepository(Cook::class)->findOneBy(['slug'=>$slug,]);
+        $cook = $this->entityManager->getRepository(Cook::class)->findOneBy(['slug'=>$slug]);
 
         if (!$cook) {
             return $this->redirectToRoute('cooks');

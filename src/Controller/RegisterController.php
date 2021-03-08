@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Mail;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,9 +42,9 @@ class RegisterController extends AbstractController
 
                 $notification = "Votre inscription s'est correctement déroulée. Vous pouvez dès à présent vous connecter à votre compte.";
 
-                //$mail = new Mail();
-                //$content = "Bonjour ".$user->getFirstname()."<br>Bienvenue sur la première boutique dédiée au mde in France.<br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, adipisci, assumenda at dolorem, doloribus error harum itaque labore laborum laudantium molestiae nam necessitatibus quis recusandae repudiandae sunt unde velit voluptates?";
-                //$mail->send($user->getEmail(),$user->getFirstname(),'Bienvenue sur La Boutique Française', $content);
+                $mail = new Mail();
+                $content = "Bonjour ".$user->getFirstname()."<br>Bienvenue sur la première boutique de recette facile made in France.<br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, adipisci, assumenda at dolorem, doloribus error harum itaque labore laborum laudantium molestiae nam necessitatibus quis recusandae repudiandae sunt unde velit voluptates?";
+                $mail->send($user->getEmail(),$user->getFirstname(),'Bienvenue sur Les Magiciens du Fouet', $content);
             } else {
                 $notification = "L'email que vous avez renseigné existe déjà.";
             }

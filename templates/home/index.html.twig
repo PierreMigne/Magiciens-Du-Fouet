@@ -4,8 +4,49 @@
     <div id="index">
         <article class="recette">
             <h2>Recette la plus aimée :</h2>
-
+            <a id="likedRecette" href="{{ path('recipe', {slug: recipeMostLiked.slug})  }}">
+                <img src="{{ asset('uploads/recipes/') }}{{ recipeMostLiked.illustration }}" alt="recette" class="imgRecette">
+                <div class="container">
+                    <h3>{{ recipeMostLiked.title }} - par {{ recipeMostLiked.CookId }} </h3>
+                    <p>{{ recipeMostLiked.description }}</p>
+                    <div class="imgContainer">
+                        {% for i in 1..recipeMostLiked.difficulty %}
+                            <span><img src="{{ asset('assets/img/fouet.png') }}" alt="icône fouet"></span>
+                        {% endfor %}
+                        {% for i in 1..recipeMostLiked.cost %}
+                            <span><img src="{{ asset('assets/img/euro.png') }}" alt="icône fouet"></span>
+                        {% endfor %}
+                    </div>
+                    <p>{{ recipeMostLiked.duration|date("H:i:s") }}</p>
+                </div>
+            </a>
         </article>
-        <a href="" class="button voirRecettes">Voir les recettes</a>
+
+        <article class="recettes">
+            <h2>Dernières recettes :</h2>
+            <ul>
+                {% for recipe in recipes %}
+                    <li>
+                        <a href="{{ path('recipe', {slug: recipe.slug})  }}">
+                            <img src="{{ asset('uploads/recipes/') }}{{ recipe.illustration }}" alt="recette" class="imgRecette">
+                            <div class="container">
+                                <h3>{{ recipe.title }} - par {{ recipe.CookId }} </h3>
+                                <p>{{ recipe.description }}</p>
+                                <div class="imgContainer">
+                                    {% for i in 1..recipe.difficulty %}
+                                        <span><img src="{{ asset('assets/img/fouet.png') }}" alt="icône fouet"></span>
+                                    {% endfor %}
+                                    {% for i in 1..recipe.cost %}
+                                        <span><img src="{{ asset('assets/img/euro.png') }}" alt="icône fouet"></span>
+                                    {% endfor %}
+                                </div>
+                                <p>{{ recipe.duration|date("H:i:s") }}</p>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </article>
+        <a href="{{ path('recipes') }}" class="button voirRecettes">Voir les recettes</a>
     </div>
 {% endblock %}

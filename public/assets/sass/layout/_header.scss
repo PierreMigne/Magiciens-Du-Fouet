@@ -9,6 +9,7 @@ h1 {
     font-weight: bolder;
     text-align: center;
     padding: 10px;
+    margin-top: 10px;
 }
 header nav ul {
     display: flex;
@@ -35,6 +36,12 @@ header ul li:hover {
     }
     header h1 {
         font-size: 45px;
+    }
+    .navbar-brand {
+        margin-right: 0!important;
+    }
+    .navbar-toggler{
+        padding: 0.25rem!important;
     }
 }
 @media screen and (max-width: 350px) {
