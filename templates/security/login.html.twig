@@ -5,7 +5,7 @@
 {% block content %}
 <article id="loginBackground">
     <div class="formContainer">
-        <form method="post">
+        <form method="post" enctype="application/x-www-form-urlencoded" id="form">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
@@ -20,12 +20,13 @@
                 </div>
             {% endif %}
 
-            <h1 class="h3 mb-3 font-weight-normal">Merci de vous connecter</h1>
+            <h2 class="h3 mb-3 font-weight-normal">Merci de vous connecter</h2>
             <label for="inputEmail">Votre Email</label>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Votre email" required autofocus>
             <label for="inputPassword">Votre mot de passe</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Votre mot de passe" required>
-
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Votre mot de passe" readonly>
+            <div id="virtualPassword"></div>
+            <button type="button" class="buttonDelete" id="effacer">Effacer</button>
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"
             >
@@ -34,9 +35,12 @@
                 Se connecter
             </button>
             <hr>
-            <p class="text-center"><a href="">Mot de passe oublié</a> ?</p>
+            <p class="text-center"><a href="{{ path('reset_password') }}">Mot de passe oublié</a> ?</p>
             <p class="text-center">Ou souhaitez-vous <a href="{{ path('register') }}"><u>Créer un compte</u></a> ?</p>
         </form>
     </div>
 </article>
+{% endblock %}
+{% block script %}
+<script src="{{ asset('assets/js/app.js') }}"></script>
 {% endblock %}

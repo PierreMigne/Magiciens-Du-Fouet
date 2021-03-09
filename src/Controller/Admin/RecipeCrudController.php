@@ -53,7 +53,8 @@ class RecipeCrudController extends AbstractCrudController
             IntegerField::new('people', 'Personnes')->hideOnIndex(),
             IntegerField::new('likes','J\'aimes'),
             BooleanField::new('isVisible','Afficher'),
-            AssociationField::new('cook_id','Cuisinier')
+            AssociationField::new('cook_id','Cuisinier'),
+            MoneyField::new('price', 'Prix')->hideOnIndex()->setCurrency('EUR'),
         ];
     }
 

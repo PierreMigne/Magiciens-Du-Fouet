@@ -7,6 +7,7 @@
     <main>
         <div class="afficher">
             <h2>{{ recipe.title}}</h2>
+            <a class="addToCart" href="{{ path('add_to_cart', {id: recipe.id}) }}" >Ajouter au panier ({{ (recipe.price / 100) | number_format(2, ',', ' ') }}  €)</a>
             <img src="{{ asset('uploads/recipes/') }}{{ recipe.illustration }}" alt="Recette">
             <div class="afficherContainer">
                 <div class="afficherTop">

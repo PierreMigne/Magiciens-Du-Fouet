@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+    <article id="loginBackground">
+        <div class="formContainer">
+            <form method="post" enctype="application/x-www-form-urlencoded" >
+
+                {% for message in app.flashes('notice') %}
+                    <div class="alert alert-info">{{ message }}</div>
+                {% endfor %}
+
+
+                <h2 class="h3 mb-3 font-weight-normal">Réinitialiser mon mot de passe</h2>
+                <label for="inputEmail">Votre Email</label>
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Votre email" required autofocus>
+
+                <button class="submit" type="submit">
+                    Valider
+                </button>
+                <hr>
+                <p class="text-center">Ou souhaitez-vous <a href="{{ path('app_login') }}"><u>Vous connecter</u></a> ?</p>
+            </form>
+        </div>
+    </article>
+{% endblock %}

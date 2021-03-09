@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+    <article id="loginBackground">
+        <div class="formContainer">
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-info">{{ message }}</div>
+            {% endfor %}
+            <h2 class="h3 mb-3 font-weight-normal">Mettre à jour mon mot de passe</h2>
+            {{ form(form) }}
+        </div>
+    </article>
+{% endblock %}

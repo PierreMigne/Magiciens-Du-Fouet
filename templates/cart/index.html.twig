@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+<article class="afficherBody">
+    <div class="container">
+
+    <h1>Mon panier</h1>
+    <p class="mt-3">Retrouvez l'ensemble des recettes que vous avez ajouté à votre panier.</p>
+    {% if cart|length > 0 %}
+        <table class="table mt-3 cart">
+            <thead>
+            <tr>
+                <th scope="col">Recette</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Total </th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set total = null %}
+            {% for recipe in cart %}
+                <tr>
+                    <td>
+                        {{ recipe.recipe.title }}
+                    </td>
+                    <td>
+                        <a href="{{ path('decrease_to_cart', {'id': recipe.recipe.id}) }}">
+                            <img src="{{ asset('assets/img/minus.png') }}" height="12px" alt="Retirer une recette">
+                        </a>
+                        {{ recipe.quantity }}
+                        <a href="{{ path('add_to_cart', {'id': recipe.recipe.id}) }}">
+                            <img src="{{ asset('assets/img/plus.png') }}" height="12px" alt="Ajouter une recette">
+                        </a>
+                    </td>
+                    <td>{{ (recipe.recipe.price / 100) | number_format(2, ',', ' ') }}€</td>
+                    <td>{{ (recipe.recipe.price * recipe.quantity / 100) | number_format(2, ',', ' ') }}€</td>
+                    <td>
+                        <a href="{{ path('delete_to_cart', {'id': recipe.recipe.id}) }}">
+                            <img src="{{ asset('assets/img/delete.png') }}" height="18px" alt="Supprimer mon produit">
+                        </a>
+                    </td>
+                </tr>
+                {% set total = total + (recipe.recipe.price * recipe.quantity) %}
+            {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <div class="text-right mb-5">
+            <b>Nombre de recettes :</b> {{ cart|length }} <br>
+            <b>Total de mon panier :</b> {{ (total / 100) | number_format(2, ',', ' ') }} €
+            <a href="" class="btn btn-block addToCart">Valider mon panier</a>
+        </div>
+    {% else %}
+        <hr>
+        <p>Votre panier est vide</p>
+    {% endif %}
+    </div>
+</article>
+{% endblock %}
+

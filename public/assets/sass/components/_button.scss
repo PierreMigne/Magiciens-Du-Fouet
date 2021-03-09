@@ -26,6 +26,12 @@
         background-color:$buttonDelete;
     }
 }
+
+.addToCart{
+    @extend .button;
+    width: auto;
+}
+
 .voirRecettes {
     width: auto;
     display: flex;
