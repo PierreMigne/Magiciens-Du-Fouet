@@ -2,42 +2,36 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
+use App\Entity\Carrier;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class UserCrudController extends AbstractCrudController
+class CarrierCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return User::class;
+        return Carrier::class;
     }
 
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            //->setPermission('delete', 'ROLE_SUPER_ADMIN')
             ->update('index', 'new', function (Action $action) {
-                return $action->setLabel('Créer Utilisateur');
+                return $action->setLabel('Créer Transporteur');
             })
-        ;
+            ;
     }
-
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            EmailField::new('email'),
-            TextField::new('firstname','Prénom'),
-            TextField::new('lastname', 'Nom'),
-            ArrayField::new('roles', 'Rôle')
-
+            TextField::new('name'),
+            TextareaField::new('description'),
+            MoneyField::new('price', 'Prix')->setCurrency('EUR'),
         ];
     }
 

@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Recipe;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -22,6 +24,14 @@ class RecipeCrudController extends AbstractCrudController
         return Recipe::class;
     }
 
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->update('index', 'new', function (Action $action) {
+                return $action->setLabel('Créer Recette');
+            })
+            ;
+    }
 
     public function configureFields(string $pageName): iterable
     {

@@ -1,0 +1,20 @@
+.form-check {
+  background-color: rgba($bgSubmit, 0.2);
+  padding: 20px 40px 20px 50px;
+  margin-top: 7px;
+}
+.cartImg {
+  width: 75px;
+  background-size: cover;
+}
+.col-form-label {
+  font-weight: bold;
+}
+.orderSummary {
+  background-color: rgba($bgSubmit, 0.2);
+  padding: 15px;
+  margin-top: 7px;
+}
+.orderSummary .row {
+  padding: 10px 0;
+}

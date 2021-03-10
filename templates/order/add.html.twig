@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement de ma commande - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Mon récapitulatif</h2>
+        <p class="text-center">Vérifiez vos informations avant de payer votre commande.</p>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="col-form-label">Mon adresse de livraison</p>
+                <div class="form-check">
+                    <p>{{ delivery|raw }}</p>
+                </div>
+                <p class="col-form-label">Mon transporteur</p>
+                <div class="form-check">
+                    <p>{{ carrier.name }}</p>
+                    <p>{{ carrier.description }}</p>
+                    <p>{{(carrier.price/100)| number_format(2, ',', ' ')}} €</p>
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-4">
+                <p class="col-form-label text-center">Ma commande</p>
+                <div class="orderSummary">
+                    {% set total = null %}
+                    {% for recipe in cart %}
+                        <div class="row">
+                            <div class="col-4 col-md-3">
+                                <img src="/uploads/recipes/{{ recipe.recipe.illustration }}" alt="{{ recipe.recipe.title }}" class="cartImg" >
+                            </div>
+                            <div class="col-4 col-md-7 my-auto">
+                                {{ recipe.recipe.title }} <br>
+                                x {{ recipe.quantity }}
+                            </div>
+                            <div class="col-4 col-md-2 my-auto">
+                                {{ (recipe.recipe.price * recipe.quantity / 100) | number_format(2, ',', ' ') }}  €
+                            </div>
+                        </div>
+                        {% set total = total + (recipe.recipe.price * recipe.quantity ) %}
+                    {% endfor %}
+                </div>
+                <hr>
+                <p><b>Sous-Total :</b> {{ (total / 100) | number_format(2, ',', ' ') }} € </p>
+                <p><b>Livraison :</b> {{(carrier.price/100)| number_format(2, ',', ' ')}} €</p>
+                <hr>
+                <p><b>Total:</b> {{ ((total / 100)+(carrier.price/100))| number_format(2, ',', ' ') }} €</p>
+                <a href="" class="btn btn-block addToCart">Payer {{ ((total / 100)+(carrier.price/100))| number_format(2, ',', ' ') }} €</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

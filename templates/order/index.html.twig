@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Je passe ma commande</h2>
+        <p class="text-center">Choisissez vos préférences avant de passer votre commande sur Les Magiciens du Fouet.</p>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                {% set formHtml %}
+                    {{ form_start(form, {action:path('order_recap')}) }}
+                        {{ form_label(form.addresses, 'Choisissez votre adresse de livraison') }}
+                    <a href="{{ path('account_address_add') }}"><u>Ajouter une nouvelle adresse</u></a>
+                    {{ form_end(form) }}
+                {% endset %}
+                {{ formHtml|replace({'[br]':'<br>'})|raw }}
+            </div>
+            <div class="col-md-6 mb-4">
+                <p class="col-form-label">Récap de ma commande</p>
+                <div class="orderSummary">
+                    {% for recipe in cart %}
+                        <div class="row">
+                            <div class="col-4 col-md-3">
+                                <img src="/uploads/recipes/{{ recipe.recipe.illustration }}" alt="{{ recipe.recipe.title }}" class="cartImg" >
+                            </div>
+                            <div class="col-5 col-md-7 my-auto">
+                                {{ recipe.recipe.title }}
+                            </div>
+                            <div class="col-3 col-md-2 my-auto">
+                                x {{ recipe.quantity }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

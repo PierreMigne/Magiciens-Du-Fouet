@@ -6,8 +6,6 @@
     <article id="compte">
         <h1>Mon compte</h1>
         <div class="text-center my-4">
-
-
             <p>Bienvenue {{ app.user.firstname }}. </p><br>
             {% if is_granted('ROLE_ADMIN') %}
                 <p>Vous êtes un administrateur, voulez-vous<a href="/admin"><u> accéder au backoffice </u></a>?</p> <br>

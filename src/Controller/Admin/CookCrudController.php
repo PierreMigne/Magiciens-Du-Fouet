@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Cook;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
@@ -14,6 +16,15 @@ class CookCrudController extends AbstractCrudController
     {
 
         return Cook::class;
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->update('index', 'new', function (Action $action) {
+                return $action->setLabel('Créer Cuisinier');
+            })
+        ;
     }
 
 
