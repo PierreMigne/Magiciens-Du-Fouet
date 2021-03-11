@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Commandes - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+    <article id="loginBackground">
+        <div class="formContainer">
+            <h1>Mes commandes</h1>
+            <a href="{{ path('account') }}" class="return">Retourner sur&nbsp;<u>mon compte</u></a>
+            {% if orders|length == 0 %}
+                <p class="text-center my-5">
+                    Vous n'avez pas encore passé de commande sur Les Magiciens du Fouet.
+                </p>
+            {% else %}
+                <div>
+                    {% for order in orders %}
+                        <div class="card m-3">
+                            <div class="card-body">
+                                <h5 class="card-title"><b>Référence :</b> {{ order.reference }}</h5>
+                                <div class="card-text">
+                                    <p>
+                                        <b>Statut :</b>
+                                        {% if order.isPaid == 1 %}
+                                            Paiement accepté
+                                        {% elseif order.isPaid == 0 %}
+                                            Paiement refusé
+                                        {% endif %}
+                                    </p>
+                                    <p><b>Passée le :</b> {{ order.createdAt|date('d/m/Y') }}</p>
+                                    <p><b>Recette(s) :</b> {{ order.orderDetails|length }}</p>
+                                    <p><b>Total :</b> {{ ((order.carrierPrice + order.getTotal)/100)|number_format(2,',') }} €</p>
+                                </div>
+                                <a href="{{ path('account_order_show', { 'reference':order.reference }) }}"><u>Voir ma commande</u></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+        </div>
+    </article>
+
+{% endblock %}

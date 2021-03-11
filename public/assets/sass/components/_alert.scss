@@ -24,3 +24,25 @@
     align-items: center;
     text-align: center;
 }
+
+
+%badges {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.badgeSuccess {
+    @extend %badges;
+    background-color: $bgSubmit;
+}
+
+.badgeError {
+    @extend %badges;
+    background-color: $buttonDelete;
+    color: white;
+}

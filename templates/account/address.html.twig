@@ -14,7 +14,7 @@
                 Vous n'avez pas encore ajouté d'adresse dans votre compte client. Pour en ajouter une, veuillez <a href="{{ path('account_address_add') }}"><u>cliquer ici</u></a>.
             </p>
         {% else %}
-            <div class="">
+            <div>
                 {% for address in app.user.addresses %}
                     <div class="card m-3">
                         <div class="card-body">

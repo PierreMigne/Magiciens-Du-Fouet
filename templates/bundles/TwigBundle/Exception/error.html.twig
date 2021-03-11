@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page introuvable - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+    <article id="loginBackground">
+        <div class="formContainer">
+            <div >
+                <h2>Page introuvable</h2>
+                <p>Désolé, cette page ne semble pas être accessible pour le moment.</p>
+                <a href="{{ path('home') }}" class="w-100 button">Revenir à l'accueil</a>
+            </div>
+        </div>
+    </article>
+{% endblock %}

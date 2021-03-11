@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Commandes - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+    <article id="loginBackground">
+        <div class="formContainer">
+            <h2>Ma commande</h2>
+            <a href="{{ path('account_order') }}" class="return">Retour</a>
+            <div class="card m-3">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Référence :</b> {{ order.reference }}</h5>
+                    <div class="card-text">
+                        <div class="detailsContainer">
+                            <p><b>Statut :</b></p>
+                            {% if order.isPaid == 1 %}
+                                <p class="ml-2 badgeSuccess">Paiement accepté</p>
+                            {% elseif order.isPaid == 0 %}
+                                <p class="ml-2 badgeError">Paiement refusé</p>
+                            {% endif %}
+                        </div>
+                        <p><b>Passée le :</b> {{ order.createdAt|date('d/m/Y') }}</p>
+                        <p><b>Transporteur choisi :</b> {{ order.carrierName }}</p>
+                        <hr>
+                        <p><b>Détails :</b></p>
+                        {% for recipe in order.orderDetails %}
+                            <div class="detailsContainer">
+                                <p>{{ recipe.recipe }} x {{ recipe.quantity }}</p>
+                                <p class="ml-2 badgeSuccess">{{ (recipe.total/100)|number_format(2,',') }} €</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="text-right">
+                        <b>Sous-total : </b>{{ (order.getTotal/100)|number_format(2,',') }} €<br>
+                        <b>Livraison :</b> {{ (order.carrierPrice/100)|number_format(2,',') }} €<br>
+                        <b>Total :</b> {{ ((order.getTotal + order.carrierPrice)/100)|number_format(2,',') }} €
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+{% endblock %}
